@@ -1,75 +1,1061 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhujay Behera Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Career Blueprint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:   #090b10;
+      --navy:    #0d1117;
+      --card:    #111827;
+      --border:  #1e293b;
+      --gold:    #f5c518;
+      --gold2:   #ffd700;
+      --purple:  #7c3aed;
+      --purple2: #a855f7;
+      --cyan:    #22d3ee;
+      --white:   #f1f5f9;
+      --muted:   #94a3b8;
+      --green:   #22c55e;
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a0a3c 0%, var(--black) 70%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle 400px at 20% 30%, rgba(124,58,237,.15), transparent),
+        radial-gradient(circle 400px at 80% 70%, rgba(34,211,238,.08), transparent);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,197,24,.12);
+      border: 1px solid rgba(245,197,24,.35);
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 99px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow span { font-size: 1rem; }
+
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.02em;
+    }
+
+    .hero h1 .line-ai   { color: var(--white); display: block; }
+    .hero h1 .line-career { color: var(--white); display: block; }
+    .hero h1 .line-blue {
+      display: block;
+      background: linear-gradient(90deg, var(--gold), var(--gold2), #ff9f0a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 560px;
+      font-weight: 500;
+    }
+
+    .hero-sub strong { color: var(--cyan); }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--white);
+      transition: border-color .2s;
+    }
+    .badge:hover { border-color: var(--gold); }
+    .badge .icon { font-size: 1.1rem; }
+
+    .price-hero {
+      margin-top: 48px;
+      background: linear-gradient(135deg, #1a0a3c, #0d1117);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 28px 48px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .price-hero::before {
+      content: 'SPECIAL LAUNCH PRICE';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--black);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      padding: 3px 14px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .price-amount {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .price-amount sup { font-size: 40%; vertical-align: super; }
+
+    .price-compare {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 6px;
+    }
+
+    .price-compare s { color: #ef4444; }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 99px;
+      margin-top: 32px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 30px rgba(124,58,237,.4);
+    }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(124,58,237,.6); }
+    .cta-btn .arrow { font-size: 1.3rem; }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 80px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    /* ── WHY THIS COURSE ── */
+    .why-section {
+      background: linear-gradient(180deg, var(--black) 0%, #0d0520 50%, var(--black) 100%);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: transform .2s, border-color .2s;
+    }
+    .why-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+
+    .why-card .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .why-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .why-card p { color: var(--muted); font-size: .9rem; }
+
+    /* ── MOVIE TICKET CALLOUT ── */
+    .ticket-section { padding: 0 24px 80px; }
+
+    .ticket-box {
+      max-width: 860px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #1a0a3c 0%, #0d1117 100%);
+      border: 2px dashed var(--gold);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+    }
+
+    .ticket-box::before, .ticket-box::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      background: var(--black);
+      border-radius: 50%;
+      border: 2px dashed var(--gold);
+    }
+    .ticket-box::before { left: -14px; }
+    .ticket-box::after  { right: -14px; }
+
+    .ticket-side { text-align: center; }
+
+    .ticket-side .big-num {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      display: block;
+      line-height: 1;
+    }
+
+    .ticket-side .label {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+    }
+
+    .ticket-side.movie .big-num { color: #ef4444; }
+    .ticket-side.movie .label   { color: #ef4444; }
+    .ticket-side.course .big-num { color: var(--gold); }
+    .ticket-side.course .label   { color: var(--gold); }
+
+    .ticket-divider {
+      text-align: center;
+      color: var(--muted);
+    }
+    .ticket-divider .vs {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--white);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .ticket-divider p { font-size: .82rem; color: var(--muted); }
+
+    .ticket-footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: .95rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+    .ticket-footer strong { color: var(--cyan); }
+
+    /* ── WHAT YOU LEARN ── */
+    .learn-section {
+      background: var(--navy);
+    }
+
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .learn-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 22px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color .2s, transform .2s;
+    }
+    .learn-item:hover { border-color: var(--purple2); transform: translateX(6px); }
+
+    .learn-item .icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .learn-item h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 5px;
+    }
+    .learn-item p { color: var(--muted); font-size: .85rem; }
+
+    /* ── WHAT YOU GET ── */
+    .get-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .get-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .get-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+
+    .get-card .get-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .get-card .get-num sup { font-size: 50%; }
+
+    .get-card h4 {
+      font-size: .9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--cyan);
+      margin: 10px 0 10px;
+    }
+    .get-card p { color: var(--muted); font-size: .85rem; }
+    .get-card .get-icon { font-size: 2.4rem; display: block; margin-bottom: 12px; }
+
+    /* ── PERKS ── */
+    .perks-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .perk-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .perk-chip .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ── CTA BOTTOM ── */
+    .cta-section {
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, #1a0a3c 0%, var(--black) 70%);
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    .dm-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 20px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .footer-chip span { font-size: 1rem; }
+
+    .footer-copy {
+      font-size: .78rem;
+      color: #4b5563;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .ticket-box {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 40px 28px;
+      }
+      .ticket-box::before, .ticket-box::after { display: none; }
+      .ticket-divider { order: 1; }
+      .ticket-side.movie  { order: 0; }
+      .ticket-side.course { order: 2; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+    .float { animation: float 4s ease-in-out infinite; }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(245,197,24,.3); }
+      50%       { box-shadow: 0 0 40px rgba(245,197,24,.6); }
+    }
+    .price-hero { animation: pulse-glow 3s ease-in-out infinite; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Bhujay Behera</h1>
-        <p>Graduate | Excel Expert | SEO Learner | Future IT Professional</p>
-    </header>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow"><span>🚀</span> Learn AI Skills · Build Your Career · Design Your Future</div>
 
-    <section class="about">
-        <h2>About Me</h2>
-        <p>
-            I am Bhujay Behera, a graduate with experience in customer service,
-            collections, sales, and health coaching. I am passionate about
-            technology, SEO, Python automation, and continuous learning.
-        </p>
-    </section>
+  <h1>
+    <span class="line-ai">AI</span>
+    <span class="line-career">CAREER</span>
+    <span class="line-blue">BLUEPRINT</span>
+  </h1>
 
-    <section class="experience">
-        <h2>Work Experience</h2>
+  <p class="hero-sub">Your step-by-step roadmap to a <strong>successful AI career</strong> — no coding required.</p>
 
-        <div class="card">
-            <h3>Home Credit India</h3>
-            <p>Customer Service & Financial Operations</p>
+  <div class="hero-badges">
+    <div class="badge"><span class="icon">🤖</span> AI Tools</div>
+    <div class="badge"><span class="icon">&lt;/&gt;</span> No Coding Needed</div>
+    <div class="badge"><span class="icon">📚</span> Practical Learning</div>
+    <div class="badge"><span class="icon">📈</span> Career Growth</div>
+    <div class="badge"><span class="icon">🌐</span> Future Ready</div>
+  </div>
+
+  <div class="price-hero float">
+    <div class="price-amount"><sup>₹</sup>299</div>
+    <div class="price-compare">Was <s>₹1,999</s> · Limited Time Only</div>
+  </div>
+
+  <a href="#" class="cta-btn" onclick="openPayment(event)">Enroll Now <span class="arrow">➤</span></a>
+</section>
+
+
+<!-- ═══════════════ WHY THIS COURSE ═══════════════ -->
+<section class="why-section">
+  <div class="container">
+    <span class="section-label">The Big Question</span>
+    <h2 class="section-title">Why Should You Choose<br>This Course?</h2>
+    <p class="section-desc">The AI revolution is already happening. The real question is — will you be part of it, or left behind? Here's why this blueprint is the smartest investment you'll make this year.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="card-icon">🎯</span>
+        <h3>High Demand</h3>
+        <p>AI skills are one of the most sought-after abilities in 2024. Every company — from startups to giants — is actively hiring people who understand AI tools and workflows.</p>
+      </div>
+      <div class="why-card">
+        <span class="card-icon">🚀</span>
+        <h3>Better Opportunities</h3>
+        <p>Knowing AI unlocks doors that simply don't open for others. Freelance, full-time, remote — more career paths become available the moment you add AI to your skillset.</p>
+      </div>
+      <div class="why-card">
+        <span class="card-icon">💰</span>
+        <h3>High Paying Careers</h3>
+        <p>AI-skilled professionals consistently command higher salaries and freelance rates. This course teaches you exactly the tools employers and clients are paying premiums for.</p>
+      </div>
+      <div class="why-card">
+        <span class="card-icon">📈</span>
+        <h3>Grow Faster</h3>
+        <p>Don't spend years grinding. AI multiplies your output — content creation, coding, research, SEO — all done faster. Future-proof yourself before it's a requirement, not an advantage.</p>
+      </div>
+      <div class="why-card">
+        <span class="card-icon">🇮🇳</span>
+        <h3>Hindi Voice Guide</h3>
+        <p>Every concept is explained in Hindi so you truly understand — not just follow along. Learning in your own language means deeper understanding and faster results.</p>
+      </div>
+      <div class="why-card">
+        <span class="card-icon">♾️</span>
+        <h3>Lifetime Access</h3>
+        <p>Pay once, revisit forever. As AI tools evolve, you can come back anytime. No monthly subscription, no expiry — your investment keeps paying off indefinitely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ MOVIE TICKET CALLOUT ═══════════════ -->
+<section class="ticket-section">
+  <div class="container">
+    <div class="ticket-box">
+      <div class="ticket-side movie">
+        <span class="big-num">₹350</span>
+        <span class="label">🎬 A Movie Ticket</span>
+        <p style="color:#94a3b8;font-size:.8rem;margin-top:10px;">2 hours of entertainment.<br>Forgotten by tomorrow.</p>
+      </div>
+
+      <div class="ticket-divider">
+        <span class="vs">VS</span>
+        <p>Which one<br>changes your life?</p>
+      </div>
+
+      <div class="ticket-side course">
+        <span class="big-num">₹299</span>
+        <span class="label">🤖 AI Career Blueprint</span>
+        <p style="color:#94a3b8;font-size:.8rem;margin-top:10px;">2+ hours of real skills.<br>Valuable for years.</p>
+      </div>
+    </div>
+    <p class="ticket-footer">
+      This course costs <strong>less than a movie ticket</strong> — but the skills you gain can pay for a thousand of them. 🎟️
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════ WHAT YOU WILL LEARN ═══════════════ -->
+<section class="learn-section">
+  <div class="container">
+    <span class="section-label">Curriculum</span>
+    <h2 class="section-title">What You Will Learn</h2>
+    <p class="section-desc">Six power-packed modules designed to take you from zero to AI-ready — no prior experience needed.</p>
+
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(124,58,237,.2);">🧠</div>
+        <div>
+          <h4>AI Fundamentals</h4>
+          <p>Understand AI concepts in simple, easy language. What AI is, how it works, and why it matters — explained clearly for everyone.</p>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(34,197,94,.2);">⚙️</div>
+        <div>
+          <h4>Practical AI Tools</h4>
+          <p>Hands-on training with ChatGPT, Copilot, Midjourney, and more. Learn to use the tools that professionals rely on every day.</p>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(59,130,246,.2);">💻</div>
+        <div>
+          <h4>AI for Real-World Skills</h4>
+          <p>Learn Automation, Content Creation, Data Analysis, and Coding with AI. Turn AI into your personal productivity superpower.</p>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(234,179,8,.2);">🔍</div>
+        <div>
+          <h4>Search Engine Optimization (SEO)</h4>
+          <p>Learn SEO, keyword research, on-page and off-page SEO, and how to rank websites on Google using AI-driven strategies.</p>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(239,68,68,.2);">🐙</div>
+        <div>
+          <h4>GitHub &amp; Git</h4>
+          <p>Learn to use Git and GitHub, upload projects, manage version control, and showcase your work to the world — like a pro.</p>
+        </div>
+      </div>
+      <div class="learn-item">
+        <div class="icon-box" style="background:rgba(168,85,247,.2);">💼</div>
+        <div>
+          <h4>Career &amp; Income Opportunities</h4>
+          <p>Explore Freelancing, Remote Jobs, and Business ideas using AI. Discover real paths to earning money with your new skills.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ WHAT YOU GET ═══════════════ -->
+<section style="background: var(--black);">
+  <div class="container">
+    <span class="section-label">What's Inside</span>
+    <h2 class="section-title">What You Will Get</h2>
+    <p class="section-desc">Everything you need to learn, practice, and build real AI skills — all in one place.</p>
+
+    <div class="get-grid">
+      <div class="get-card">
+        <span class="get-icon">🎬</span>
+        <span class="get-num">2<sup>+</sup></span>
+        <h4>Hours of Screen Record Video</h4>
+        <p>Full course explained with Hindi voice guide — watch, listen, and learn at your own pace with clarity and confidence.</p>
+      </div>
+      <div class="get-card">
+        <span class="get-icon">📄</span>
+        <span class="get-num">100<sup>+</sup></span>
+        <h4>Pages Detailed PDF</h4>
+        <p>A comprehensive 100+ page PDF covering every topic in detail — your go-to reference guide long after the course ends.</p>
+      </div>
+      <div class="get-card">
+        <span class="get-icon">🐱</span>
+        <span class="get-num">✓</span>
+        <h4>GitHub Project Demo</h4>
+        <p>See real GitHub projects, understand version control, and get a link to live demos shared directly to your DM.</p>
+      </div>
+    </div>
+
+    <div class="perks-row">
+      <div class="perk-chip"><div class="dot"></div>♾️ Lifetime Access</div>
+      <div class="perk-chip"><div class="dot"></div>📱 Mobile &amp; Laptop Access</div>
+      <div class="perk-chip"><div class="dot"></div>🟢 Beginner Friendly</div>
+      <div class="perk-chip"><div class="dot"></div>🔬 Practical Examples</div>
+      <div class="perk-chip"><div class="dot"></div>🗺️ Step-by-Step Guidance</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ CTA BOTTOM ═══════════════ -->
+<section class="cta-section" id="enroll">
+  <div class="container">
+    <h2>Invest in Your Skills Today,<br>Build Your Future Tomorrow</h2>
+    <p>The AI wave is here. ₹299 is all it takes to get on board. DM now to enroll before the launch price ends.</p>
+
+    <div class="price-hero float" style="margin: 0 auto 32px; display: inline-block;">
+      <div class="price-amount"><sup>₹</sup>299</div>
+      <div class="price-compare">Limited Time · <s>₹1,999</s> Value</div>
+    </div>
+    <br/>
+    <a href="#" class="cta-btn" onclick="openPayment(event)" style="font-size:1.1rem; padding: 18px 48px;">
+      Enroll Now <span class="arrow">➤</span>
+    </a>
+
+    <div class="dm-row">
+      <span>📲 Send a DM on Telegram</span>
+      <span>·</span>
+      <span>🔗 GitHub project link shared in DM</span>
+      <span>·</span>
+      <span>⚡ Instant access after payment</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-chips">
+      <div class="footer-chip"><span>📖</span> Practical Learning</div>
+      <div class="footer-chip"><span>📈</span> Career Growth</div>
+      <div class="footer-chip"><span>⭐</span> Skills for Tomorrow</div>
+      <div class="footer-chip"><span>🎯</span> Success Starts Today</div>
+    </div>
+    <p class="footer-copy">© 2025 AI Career Blueprint · All rights reserved</p>
+  </div>
+</footer>
+
+<!-- ═══════════════ PAYMENT MODAL ═══════════════ -->
+<div id="paymentModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.8);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+">
+  <div id="modalBox" style="
+    background:#111827;
+    border:1px solid #1e293b;
+    border-radius:20px;
+    width:100%;
+    max-width:480px;
+    max-height:92vh;
+    overflow-y:auto;
+    box-shadow:0 40px 100px rgba(0,0,0,.7);
+    animation: modalIn .35s cubic-bezier(.34,1.56,.64,1) both;
+    scrollbar-width:thin;
+    scrollbar-color:#1e293b transparent;
+  ">
+
+    <!-- Header -->
+    <div style="
+      background:linear-gradient(135deg,#1a0a3c,#0d1117);
+      padding:20px 24px;
+      border-bottom:1px solid #1e293b;
+      display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:1;
+    ">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(124,58,237,.25);display:flex;align-items:center;justify-content:center;font-size:1.25rem;">🔒</div>
+        <div>
+          <div style="font-size:.68rem;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;font-weight:700;">Secure Checkout</div>
+          <div style="font-size:.98rem;font-weight:700;color:#f1f5f9;">AI Career Blueprint</div>
+        </div>
+      </div>
+      <button onclick="closePayment()" style="background:rgba(255,255,255,.07);border:none;color:#94a3b8;width:34px;height:34px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">✕</button>
+    </div>
+
+    <div style="padding:20px 24px 0;">
+
+      <!-- Order Summary -->
+      <div style="background:#0d1117;border:1px solid #1e293b;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <div>
+          <div style="font-size:.72rem;color:#94a3b8;margin-bottom:2px;">Order Summary</div>
+          <div style="font-size:.92rem;font-weight:600;color:#f1f5f9;">AI Career Blueprint — Full Course</div>
+          <div style="font-size:.72rem;color:#22d3ee;margin-top:3px;">🎬 2+ hrs Video &nbsp;·&nbsp; 📄 100+ pg PDF &nbsp;·&nbsp; ♾️ Lifetime</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;margin-left:12px;">
+          <div style="font-size:.72rem;color:#94a3b8;text-decoration:line-through;">₹1,999</div>
+          <div style="font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:#f5c518;">₹299</div>
+        </div>
+      </div>
+
+      <!-- Payment Method Tabs -->
+      <div style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Choose Payment Method</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;">
+
+        <!-- UPI Tab -->
+        <div id="tabUPI" onclick="switchTab('UPI')" style="
+          background:#0d1117;border:2px solid #7c3aed;border-radius:12px;
+          padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s;
+        ">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📱</div>
+          <div style="font-size:.88rem;font-weight:700;color:#f1f5f9;">UPI</div>
+          <div style="font-size:.7rem;color:#a855f7;margin-top:2px;">PhonePe · GPay · Paytm</div>
         </div>
 
-        <div class="card">
-            <h3>Altruist Technologies Pvt. Ltd.</h3>
-            <p>Collections Executive - IndusInd Bank Process</p>
+        <!-- Card Tab -->
+        <div id="tabCard" onclick="switchTab('Card')" style="
+          background:#0d1117;border:2px solid #1e293b;border-radius:12px;
+          padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s;
+        ">
+          <div style="font-size:1.6rem;margin-bottom:6px;">💳</div>
+          <div style="font-size:.88rem;font-weight:700;color:#f1f5f9;">Card</div>
+          <div style="font-size:.7rem;color:#94a3b8;margin-top:2px;">Debit / Credit Card</div>
         </div>
+      </div>
 
-        <div class="card">
-            <h3>Mervice Infotech Pvt. Ltd.</h3>
-            <p>Health Coach - Kapiva Ayurveda</p>
+      <!-- ── UPI PANEL ── -->
+      <div id="panelUPI">
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">UPI ID</label>
+          <input type="text" placeholder="yourname@okicici  or  yourname@ybl" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'"/>
         </div>
-    </section>
+        <div style="margin-bottom:6px;">
+          <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">— OR —  Mobile Number</label>
+          <input type="tel" placeholder="9XXXXXXXXX" maxlength="10" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'"/>
+        </div>
+        <!-- UPI app logos row -->
+        <div style="display:flex;gap:10px;justify-content:center;margin:16px 0;">
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:8px;padding:7px 14px;font-size:.78rem;color:#94a3b8;font-weight:600;">📲 PhonePe</div>
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:8px;padding:7px 14px;font-size:.78rem;color:#94a3b8;font-weight:600;">🟢 GPay</div>
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:8px;padding:7px 14px;font-size:.78rem;color:#94a3b8;font-weight:600;">🔵 Paytm</div>
+        </div>
+      </div>
 
-    <section class="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Microsoft Excel</li>
-            <li>MS Word</li>
-            <li>SEO</li>
-            <li>Python Automation</li>
-            <li>Sales & Marketing</li>
-            <li>Customer Service</li>
-        </ul>
-    </section>
+      <!-- ── CARD PANEL ── -->
+      <div id="panelCard" style="display:none;">
+        <!-- Name on Card -->
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">Name on Card</label>
+          <input type="text" placeholder="As printed on your card" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'"/>
+        </div>
+        <!-- Card Number -->
+        <div style="margin-bottom:14px;">
+          <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">Card Number</label>
+          <div style="position:relative;">
+            <input type="text" id="cardNum" placeholder="1234  5678  9012  3456" maxlength="19" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 48px 12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;letter-spacing:.08em;box-sizing:border-box;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'" oninput="fmtCard(this)"/>
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:1.2rem;pointer-events:none;">💳</span>
+          </div>
+        </div>
+        <!-- Expiry + CVV side by side -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">Expiry Date</label>
+            <input type="text" placeholder="MM / YY" maxlength="5" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'" oninput="fmtExpiry(this)"/>
+          </div>
+          <div>
+            <label style="font-size:.72rem;font-weight:700;color:#94a3b8;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px;">CVV</label>
+            <div style="position:relative;">
+              <input type="password" placeholder="• • •" maxlength="4" style="width:100%;background:#0d1117;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;color:#f1f5f9;font-size:.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box;" onfocus="this.style.borderColor='#7c3aed'" onblur="this.style.borderColor='#1e293b'"/>
+            </div>
+          </div>
+        </div>
+        <!-- Card network badges -->
+        <div style="display:flex;gap:8px;margin-bottom:4px;">
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;font-size:.72rem;color:#94a3b8;font-weight:600;">VISA</div>
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;font-size:.72rem;color:#94a3b8;font-weight:600;">MasterCard</div>
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;font-size:.72rem;color:#94a3b8;font-weight:600;">RuPay</div>
+          <div style="background:#0d1117;border:1px solid #1e293b;border-radius:6px;padding:5px 12px;font-size:.72rem;color:#94a3b8;font-weight:600;">Amex</div>
+        </div>
+      </div>
 
-    <section class="goals">
-        <h2>Career Goals</h2>
-        <p>
-            To build a successful career in IT, master SEO and Python
-            automation, and grow my own online business.
-        </p>
-    </section>
+      <!-- Pay Button -->
+      <button onclick="processPayment()" id="payBtn" style="
+        width:100%;margin-top:20px;
+        background:linear-gradient(135deg,#7c3aed,#a855f7);
+        color:#fff;font-size:1rem;font-weight:700;
+        letter-spacing:.05em;text-transform:uppercase;
+        border:none;border-radius:99px;padding:15px;
+        cursor:pointer;
+        transition:transform .2s,box-shadow .2s;
+        font-family:'Inter',sans-serif;
+        box-shadow:0 0 24px rgba(124,58,237,.4);
+      "
+      onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(124,58,237,.6)'"
+      onmouseout="this.style.transform='';this.style.boxShadow='0 0 24px rgba(124,58,237,.4)'">
+        Pay ₹299 Securely
+      </button>
 
-    <section class="contact">
-        <h2>Contact</h2>
-        <p>Email: your-email@example.com</p>
-        <p>Phone: +91 XXXXX XXXXX</p>
-    </section>
+      <div style="text-align:center;font-size:.72rem;color:#4b5563;padding:14px 0 20px;">
+        🔒 256-bit SSL Encrypted &nbsp;·&nbsp; 🛡️ Safe & Secure Payment
+      </div>
+    </div>
 
-    <footer>
-        <p>© 2026 Bhujay Behera. All Rights Reserved.</p>
-    </footer>
+    <!-- Error Message -->
+    <div id="payError" style="
+      display:none;
+      margin:0 24px 24px;
+      background:rgba(239,68,68,.1);
+      border:1px solid rgba(239,68,68,.4);
+      border-radius:14px;
+      padding:22px 20px;
+      text-align:center;
+    ">
+      <div style="font-size:2rem;margin-bottom:10px;">⚠️</div>
+      <div style="font-size:1rem;font-weight:700;color:#ef4444;margin-bottom:8px;">Payment Failed</div>
+      <div style="font-size:.88rem;color:#fca5a5;line-height:1.6;">
+        Payment Gateway is currently busy.<br>Please try again after some time.
+      </div>
+      <button onclick="retryPayment()" style="
+        margin-top:16px;background:transparent;
+        border:1px solid rgba(239,68,68,.5);
+        color:#ef4444;border-radius:99px;
+        padding:9px 24px;font-size:.85rem;font-weight:700;
+        cursor:pointer;font-family:'Inter',sans-serif;
+        transition:background .2s;
+      "
+      onmouseover="this.style.background='rgba(239,68,68,.12)'"
+      onmouseout="this.style.background='transparent'">
+        🔄 Try Again
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  @keyframes modalIn {
+    from { opacity:0; transform:scale(.9) translateY(24px); }
+    to   { opacity:1; transform:scale(1)  translateY(0); }
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .spinner {
+    display:inline-block;width:16px;height:16px;
+    border:2px solid rgba(255,255,255,.3);
+    border-top-color:#fff;border-radius:50%;
+    animation:spin .7s linear infinite;
+    vertical-align:middle;margin-right:8px;
+  }
+</style>
+
+<script>
+  const modal   = document.getElementById('paymentModal');
+  const payBtn  = document.getElementById('payBtn');
+  const payError= document.getElementById('payError');
+
+  function openPayment(e) {
+    if(e) e.preventDefault();
+    payError.style.display = 'none';
+    payBtn.style.display   = 'block';
+    payBtn.innerHTML       = 'Pay ₹299 Securely';
+    payBtn.disabled        = false;
+    switchTab('UPI');
+    modal.style.display    = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePayment() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function switchTab(tab) {
+    const isUPI  = tab === 'UPI';
+    // panels
+    document.getElementById('panelUPI').style.display  = isUPI  ? 'block' : 'none';
+    document.getElementById('panelCard').style.display = !isUPI ? 'block' : 'none';
+    // tab highlight
+    const tUPI  = document.getElementById('tabUPI');
+    const tCard = document.getElementById('tabCard');
+    tUPI.style.borderColor  = isUPI  ? '#7c3aed' : '#1e293b';
+    tCard.style.borderColor = !isUPI ? '#7c3aed' : '#1e293b';
+    tUPI.querySelector('div:nth-child(2)').style.color  = isUPI  ? '#f1f5f9' : '#94a3b8';
+    tCard.querySelector('div:nth-child(2)').style.color = !isUPI ? '#f1f5f9' : '#94a3b8';
+  }
+
+  function fmtCard(el) {
+    let v = el.value.replace(/\D/g,'').slice(0,16);
+    el.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+
+  function fmtExpiry(el) {
+    let v = el.value.replace(/\D/g,'').slice(0,4);
+    if(v.length >= 3) v = v.slice(0,2)+'/'+v.slice(2);
+    el.value = v;
+  }
+
+  function processPayment() {
+    payBtn.innerHTML = '<span class="spinner"></span>Processing...';
+    payBtn.disabled  = true;
+    setTimeout(function() {
+      payBtn.style.display  = 'none';
+      payError.style.display= 'block';
+      document.getElementById('modalBox').scrollTop = 99999;
+    }, 2500);
+  }
+
+  function retryPayment() {
+    payError.style.display= 'none';
+    payBtn.style.display  = 'block';
+    payBtn.innerHTML      = 'Pay ₹299 Securely';
+    payBtn.disabled       = false;
+  }
+
+  modal.addEventListener('click', function(e){ if(e.target===modal) closePayment(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePayment(); });
+</script>
 
 </body>
 </html>
